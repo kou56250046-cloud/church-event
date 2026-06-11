@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>イベントの引き出し | 教会イベント企画カタログ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+:root{
+  --bg:#F1FAF3; --bg-2:#E6F6EB; --card:#FFFFFF;
+  --ink:#1E3328; --muted:#5C7466; --faint:#8AA294;
+  --leaf:#3FA46A; --leaf-deep:#27754B; --leaf-soft:#BFE8CD;
+  --mint:#DDF3E4; --mint-2:#EDF9F1; --line:#D3EBDB;
+  --sun:#F5B73B; --danger:#D95A4E;
+  --shadow:0 8px 28px rgba(39,117,75,.10);
+  --shadow-lg:0 18px 44px rgba(39,117,75,.16);
+  --r:18px; --r-sm:12px;
+  --ease:cubic-bezier(.22,.85,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP',sans-serif;color:var(--ink);
+  background:
+    radial-gradient(900px 420px at 85% -10%, #DFF5E6 0%, transparent 60%),
+    radial-gradient(700px 380px at -10% 8%, #E9F8EE 0%, transparent 55%),
+    var(--bg);
+  min-height:100vh;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.brand,.btn{font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif}
+a{color:var(--leaf-deep)}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font:inherit;color:var(--ink)}
+:focus-visible{outline:3px solid rgba(63,164,106,.55);outline-offset:2px;border-radius:6px}
+::selection{background:var(--leaf-soft)}
+
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:10px;
+  padding:12px clamp(14px,4vw,32px);
+  background:rgba(241,250,243,.82);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:8px;font-weight:900;font-size:1.12rem;letter-spacing:.02em;cursor:pointer;color:var(--leaf-deep)}
+.brand .logo{display:inline-grid;place-items:center;width:34px;height:34px;background:linear-gradient(135deg,var(--leaf),#6CC992);color:#fff;border-radius:50% 50% 50% 6px;font-size:1.05rem;box-shadow:0 4px 12px rgba(39,117,75,.28);transition:transform .4s var(--ease)}
+.brand:hover .logo{transform:rotate(-14deg) scale(1.06)}
+.head-spacer{flex:1}
+.conn{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:99px;background:var(--mint);color:var(--leaf-deep);white-space:nowrap}
+.conn::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--leaf)}
+.conn.off{background:#F6EFD9;color:#9A7A1F}
+.conn.off::before{background:var(--sun)}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.9rem;
+  padding:9px 16px;border-radius:99px;transition:transform .25s var(--ease),box-shadow .25s,background .25s;
+  white-space:nowrap;
+}
+.btn:active{transform:scale(.96)}
+.btn-pri{background:linear-gradient(135deg,var(--leaf),#5BBE84);color:#fff;box-shadow:0 6px 16px rgba(39,117,75,.26)}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(39,117,75,.32)}
+.btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--leaf-deep)}
+.btn-ghost:hover{background:var(--mint-2);transform:translateY(-2px)}
+.btn-danger{background:#FBEAE8;color:var(--danger)}
+.btn-icon{width:40px;height:40px;justify-content:center;padding:0;border-radius:50%}
+
+/* ---------- layout ---------- */
+main{max-width:1100px;margin:0 auto;padding:0 clamp(14px,4vw,32px) 90px}
+.view{animation:viewIn .4s var(--ease)}
+@keyframes viewIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(34px,6vw,58px) 0 10px;overflow:visible}
+.hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.32em;color:var(--leaf);text-transform:uppercase;margin-bottom:10px}
+.hero h1{font-size:clamp(1.7rem,4.6vw,2.7rem);font-weight:900;letter-spacing:.01em;line-height:1.35}
+.hero h1 em{font-style:normal;color:var(--leaf-deep);background:linear-gradient(transparent 62%,var(--leaf-soft) 62%)}
+.hero-sub{color:var(--muted);margin-top:8px;font-size:.95rem}
+.leaf{position:absolute;font-size:1.2rem;opacity:0;pointer-events:none;animation:drift linear infinite}
+@keyframes drift{
+  0%{opacity:0;transform:translate(0,-20px) rotate(0deg)}
+  12%{opacity:.55}
+  88%{opacity:.4}
+  100%{opacity:0;transform:translate(46px,160px) rotate(160deg)}
+}
+.searchbar{
+  display:flex;align-items:center;gap:10px;margin-top:22px;
+  background:#fff;border:1.5px solid var(--line);border-radius:99px;
+  padding:6px 8px 6px 18px;box-shadow:var(--shadow);max-width:560px;
+  transition:box-shadow .3s,border-color .3s,transform .3s var(--ease);
+}
+.searchbar:focus-within{border-color:var(--leaf);box-shadow:0 10px 30px rgba(39,117,75,.18);transform:translateY(-2px)}
+.searchbar input{flex:1;border:none;outline:none;background:none;font-size:1rem;min-width:0}
+.searchbar .sicon{color:var(--leaf);font-size:1.05rem}
+.searchbar .sclear{color:var(--faint);font-size:1rem;padding:6px 10px;border-radius:50%}
+.searchbar .sclear:hover{background:var(--mint)}
+
+/* ---------- categories ---------- */
+.cats{display:flex;gap:10px;overflow-x:auto;padding:24px 2px 14px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat-tile{
+  --c:var(--leaf);
+  flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  padding:12px 18px 10px;min-width:108px;
+  background:#fff;border:1.5px solid var(--line);
+  border-radius:22px 22px 22px 6px;
+  transition:transform .3s var(--ease),box-shadow .3s,border-color .3s,background .3s;
+  text-align:left;
+}
+.cat-tile .ci{font-size:1.3rem;transition:transform .35s var(--ease)}
+.cat-tile .cn{font-weight:700;font-size:.86rem}
+.cat-tile .cc{font-size:.7rem;color:var(--faint);font-weight:700}
+.cat-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--c)}
+.cat-tile:hover .ci{transform:rotate(-10deg) scale(1.15)}
+.cat-tile.on{background:var(--c);border-color:var(--c);color:#fff;box-shadow:0 10px 24px color-mix(in srgb,var(--c) 38%,transparent)}
+.cat-tile.on .cc{color:rgba(255,255,255,.85)}
+
+/* ---------- filters ---------- */
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:4px 0 8px}
+.f-label{font-size:.74rem;font-weight:700;color:var(--faint);margin-right:-2px}
+.chip{
+  font-size:.8rem;font-weight:700;padding:6px 13px;border-radius:99px;
+  background:#fff;border:1.5px solid var(--line);color:var(--muted);
+  transition:all .25s var(--ease);
+}
+.chip:hover{border-color:var(--leaf);color:var(--leaf-deep);transform:translateY(-2px)}
+.chip.on{background:var(--leaf-deep);border-color:var(--leaf-deep);color:#fff}
+.f-sep{width:1px;height:18px;background:var(--line);margin:0 4px}
+.f-clear{font-size:.78rem;font-weight:700;color:var(--faint);text-decoration:underline;padding:4px 6px}
+.f-clear:hover{color:var(--danger)}
+.result-meta{font-size:.82rem;color:var(--muted);padding:10px 2px 14px}
+.result-meta b{color:var(--leaf-deep);font-size:1rem}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:16px}
+.card{
+  --c:var(--leaf);
+  position:relative;background:var(--card);border:1.5px solid var(--line);
+  border-radius:var(--r) var(--r) var(--r) 6px;padding:18px 18px 14px;
+  cursor:pointer;overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s,border-color .35s;
+}
+.card::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:5px;
+  background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 45%,#fff));
+  transform:scaleX(.32);transform-origin:left;transition:transform .45s var(--ease);
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--c) 55%,var(--line))}
+.card:hover::before{transform:scaleX(1)}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.cat-chip{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:99px;background:color-mix(in srgb,var(--c) 14%,#fff);color:color-mix(in srgb,var(--c) 75%,#000)}
+.hist-chip{font-size:.7rem;font-weight:700;color:var(--faint)}
+.hist-chip.has{color:var(--leaf-deep);background:var(--mint);padding:3px 9px;border-radius:99px}
+.card h3{font-size:1.08rem;font-weight:900;letter-spacing:.01em;margin-bottom:4px}
+.card .sum{font-size:.84rem;color:var(--muted);min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.badge{font-size:.72rem;font-weight:700;color:var(--muted);background:var(--mint-2);border:1px solid var(--line);padding:2px 9px;border-radius:99px}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tag{font-size:.72rem;color:var(--leaf-deep);font-weight:500}
+.doc-mark{position:absolute;right:14px;bottom:12px;font-size:.68rem;font-weight:700;color:var(--sun)}
+.empty{
+  grid-column:1/-1;text-align:center;padding:64px 20px;color:var(--muted);
+  background:var(--mint-2);border:1.5px dashed var(--line);border-radius:var(--r);
+}
+.empty .big{font-size:2rem;margin-bottom:8px}
+
+/* ---------- animations ---------- */
+.stagger>*{opacity:0;animation:floatUp .55s var(--ease) forwards;animation-delay:calc(var(--i,0)*55ms)}
+@keyframes floatUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.on{opacity:1;transform:none}
+
+/* ---------- detail ---------- */
+.backrow{padding:20px 0 14px}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.88rem;color:var(--leaf-deep);padding:6px 10px;border-radius:99px;transition:all .25s var(--ease)}
+.backlink:hover{background:var(--mint);transform:translateX(-3px)}
+.d-head{
+  --c:var(--leaf);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--c) 12%,#fff),#fff 65%);
+  border:1.5px solid var(--line);border-left:6px solid var(--c);
+  border-radius:var(--r);padding:clamp(18px,3.6vw,30px);box-shadow:var(--shadow);
+}
+.d-head h1{font-size:clamp(1.4rem,3.6vw,2rem);font-weight:900;margin:8px 0 6px}
+.d-head .sum{color:var(--muted);font-size:.94rem}
+.d-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.d-section{margin-top:26px}
+.d-section>h2{display:flex;align-items:center;gap:8px;font-size:1.02rem;font-weight:900;color:var(--leaf-deep);margin-bottom:12px}
+.d-section>h2::after{content:"";flex:1;height:1.5px;background:linear-gradient(90deg,var(--line),transparent)}
+.doc-frame-wrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.doc-frame{display:block;width:100%;min-height:300px;border:none;background:#fff}
+.md-body{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:clamp(18px,4vw,36px);box-shadow:var(--shadow)}
+.md-body h1{font-size:1.5rem;color:var(--leaf-deep);border-bottom:2.5px solid var(--mint);padding-bottom:8px;margin:.4em 0 .7em}
+.md-body h2{font-size:1.18rem;color:var(--leaf-deep);margin:1.4em 0 .5em;padding-left:10px;border-left:4px solid var(--leaf)}
+.md-body h3{font-size:1.02rem;margin:1.2em 0 .4em}
+.md-body p{margin:.5em 0}
+.md-body ul,.md-body ol{padding-left:1.5em;margin:.5em 0}
+.md-body li{margin:.22em 0}
+.md-body table{border-collapse:collapse;width:100%;margin:.9em 0;font-size:.9rem}
+.md-body th{background:var(--mint);color:var(--leaf-deep);font-weight:700}
+.md-body th,.md-body td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.md-body tr:nth-child(even) td{background:var(--mint-2)}
+.md-body blockquote{border-left:4px solid var(--sun);background:#FFFBEF;padding:8px 14px;border-radius:0 10px 10px 0;color:#7A6326;margin:.8em 0}
+.md-body code{background:var(--mint-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.86em}
+.md-body hr{border:none;border-top:1.5px dashed var(--line);margin:1.4em 0}
+.doc-empty{
+  text-align:center;padding:44px 22px;background:var(--mint-2);
+  border:1.5px dashed var(--leaf-soft);border-radius:var(--r);color:var(--muted);
+}
+.doc-empty .big{font-size:1.9rem;margin-bottom:8px}
+.prompt-box{
+  text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-sm);
+  padding:13px 15px;margin:16px auto 10px;max-width:640px;font-size:.82rem;color:var(--muted);
+  white-space:pre-wrap;word-break:break-word;
+}
+.h-list{display:flex;flex-direction:column;gap:10px}
+.h-item{
+  display:flex;gap:14px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);
+  border-radius:var(--r-sm);padding:13px 16px;transition:transform .25s var(--ease),box-shadow .25s;
+}
+.h-item:hover{transform:translateX(4px);box-shadow:var(--shadow)}
+.h-date{flex:0 0 auto;font-family:'Zen Maru Gothic';font-weight:900;color:var(--leaf-deep);background:var(--mint);border-radius:10px;padding:5px 11px;font-size:.82rem}
+.h-memo{flex:1;font-size:.88rem;color:var(--ink);white-space:pre-wrap;word-break:break-word}
+.h-del{color:var(--faint);font-size:.8rem;padding:4px 8px;border-radius:8px}
+.h-del:hover{color:var(--danger);background:#FBEAE8}
+.h-form{display:flex;flex-wrap:wrap;gap:9px;background:var(--mint-2);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:13px 14px;margin-top:12px}
+.h-form input[type=date]{padding:8px 11px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.h-form input[type=text]{flex:1;min-width:200px;padding:8px 13px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+
+/* ---------- form ---------- */
+.form-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.6vw,30px);box-shadow:var(--shadow);margin-top:6px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg.full{grid-column:1/-1}
+.fg label{font-size:.8rem;font-weight:700;color:var(--leaf-deep)}
+.fg label .req{color:var(--danger);margin-left:3px}
+.fg input,.fg select,.fg textarea{
+  padding:10px 13px;border:1.5px solid var(--line);border-radius:var(--r-sm);
+  background:var(--mint-2);transition:border-color .25s,background .25s,box-shadow .25s;width:100%;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--leaf);background:#fff;box-shadow:0 0 0 4px rgba(63,164,106,.14)}
+.fg textarea{resize:vertical;min-height:220px;font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;font-size:.84rem;line-height:1.55}
+.fg .hint{font-size:.72rem;color:var(--faint)}
+.check-row{display:flex;flex-wrap:wrap;gap:8px}
+.check-row .chip{user-select:none}
+.seg{display:inline-flex;background:var(--mint-2);border:1.5px solid var(--line);border-radius:99px;padding:3px;gap:2px}
+.seg button{font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:99px;color:var(--muted);transition:all .25s var(--ease)}
+.seg button.on{background:#fff;color:var(--leaf-deep);box-shadow:0 2px 8px rgba(39,117,75,.14)}
+.preview-pane{border:1.5px solid var(--line);border-radius:var(--r-sm);overflow:hidden;min-height:220px;background:#fff}
+.form-foot{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:22px;padding-top:18px;border-top:1.5px dashed var(--line)}
+.newcat{display:none;grid-template-columns:1fr 80px 90px;gap:8px;margin-top:8px}
+.newcat.show{display:grid}
+
+/* ---------- modal / toast ---------- */
+.modal-bg{
+  position:fixed;inset:0;z-index:100;background:rgba(30,51,40,.4);backdrop-filter:blur(4px);
+  display:grid;place-items:center;padding:18px;animation:fadeIn .3s var(--ease);
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:#fff;border-radius:22px;max-width:540px;width:100%;max-height:88vh;overflow:auto;
+  padding:26px clamp(18px,4vw,30px);box-shadow:0 30px 80px rgba(20,40,30,.35);
+  animation:popIn .42s var(--ease);
+}
+@keyframes popIn{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:none}}
+.modal h2{font-size:1.2rem;font-weight:900;color:var(--leaf-deep);display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.modal .desc{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.modal .fg{margin-bottom:13px}
+.modal-foot{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end;margin-top:18px}
+.note{font-size:.76rem;color:var(--muted);background:var(--mint-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 13px;margin-top:14px;line-height:1.65}
+#toast-wrap{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{
+  background:var(--ink);color:#fff;font-size:.86rem;font-weight:500;padding:11px 20px;border-radius:99px;
+  box-shadow:0 12px 30px rgba(20,40,30,.3);animation:toastIn .4s var(--ease);max-width:88vw;
+}
+.toast.ok{background:var(--leaf-deep)}
+.toast.err{background:var(--danger)}
+.toast.out{animation:toastOut .35s var(--ease) forwards}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px) scale(.96)}}
+.banner{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:#FFF8E6;border:1.5px solid #F0DFAE;color:#8A6D1C;
+  border-radius:var(--r-sm);padding:10px 15px;font-size:.82rem;margin-top:16px;
+}
+.banner button{font-weight:700;text-decoration:underline;color:#8A6D1C}
+.welcome{max-width:620px;margin:8vh auto 0;text-align:center}
+.welcome .logo-big{font-size:3rem;animation:sway 3.5s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(8deg)}}
+.welcome h1{font-size:1.6rem;font-weight:900;margin:14px 0 8px}
+.welcome p{color:var(--muted);font-size:.92rem}
+.welcome .btns{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.spin{display:inline-block;width:42px;height:42px;border:4px solid var(--mint);border-top-color:var(--leaf);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading{display:grid;place-items:center;padding:18vh 0;gap:14px;color:var(--muted);font-size:.88rem}
+
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+  .head-actions-label{display:none}
+  .d-actions .btn{flex:1;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .stagger>*,.reveal{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="brand" id="brand" role="button" tabindex="0" aria-label="ホームへ">
+    <span class="logo">🌿</span><span>イベントの引き出し</span>
+  </div>
+</header>
+
+<main id="app">
+  <div class="loading"><span class="spin"></span>データを読み込んでいます…</div>
+</main>
+
+<div id="modal-root"></div>
+<div id="toast-wrap"></div>
+
+<script>
+"use strict";
+/* =========================================================
+   イベントの引き出し — 教会イベント企画カタログ (単一ファイルSPA)
+   データ: data/events.json (GitHub Pages で静的配信)
+========================================================= */
+
+const SEASONS = ["春","夏","秋","冬","通年"];
+const BUDGETS = { free:"無料", low:"〜500円/人", mid:"〜1,500円/人", high:"1,500円〜/人" };
+const PEOPLE_FILTERS = { s:"〜10人", m:"10〜30人", l:"30人〜" };
+
+const state = {
+  data: null,
+  filters: { q:"", category:null, people:null, seasons:new Set(), budgets:new Set() },
+};
+
+/* ---------- utils ---------- */
+const $ = s => document.querySelector(s);
+function esc(s){ return String(s??"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function escAttr(s){ return esc(s); }
+function detectFormat(t){
+  const s = String(t||"").trim();
+  if(!s) return "markdown";
+  if(/^</.test(s) || /<\/?(html|body|head|style|div|section|table|h[1-6]|p|ul|ol)\b/i.test(s)) return "html";
+  return "markdown";
+}
+function catOf(id){ return (state.data?.categories||[]).find(c=>c.id===id) || {id:"",name:"未分類",icon:"📁",color:"#9AAFA1"}; }
+function peopleLabel(ev){
+  const a = ev.peopleMin, b = ev.peopleMax;
+  if(a==null && b==null) return null;
+  if(a!=null && b!=null) return `${a}〜${b}人`;
+  if(a!=null) return `${a}人〜`;
+  return `〜${b}人`;
+}
+function toast(msg, type="ok", ms=2600){
+  const el = document.createElement("div");
+  el.className = "toast "+type; el.textContent = msg;
+  $("#toast-wrap").appendChild(el);
+  setTimeout(()=>{ el.classList.add("out"); setTimeout(()=>el.remove(), 360); }, ms);
+}
+
+/* ---------- data load ---------- */
+async function loadData(){
+  try{
+    const res = await fetch("data/events.json?t="+Date.now(), { cache:"no-store" });
+    if(res.ok){ state.data = normalize(await res.json()); return; }
+  }catch(e){}
+  state.data = null;
+}
+function normalize(d){
+  d = d || {};
+  d.version = d.version || 1;
+  d.categories = Array.isArray(d.categories) ? d.categories : [];
+  d.events = Array.isArray(d.events) ? d.events : [];
+  d.events.forEach(ev=>{
+    ev.history = Array.isArray(ev.history) ? ev.history : [];
+    ev.tags = Array.isArray(ev.tags) ? ev.tags : [];
+    ev.seasons = Array.isArray(ev.seasons) ? ev.seasons : [];
+  });
+  return d;
+}
+
+/* ---------- filtering ---------- */
+function filteredEvents(){
+  const f = state.filters;
+  const terms = f.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  return (state.data.events||[]).filter(ev=>{
+    if(f.category && ev.category!==f.category) return false;
+    if(f.people){
+      const min = ev.peopleMin ?? 0, max = ev.peopleMax ?? 9999;
+      if(f.people==="s" && min>10) return false;
+      if(f.people==="m" && (max<10 || min>30)) return false;
+      if(f.people==="l" && max<30) return false;
+    }
+    if(f.seasons.size){
+      const evs = ev.seasons||[];
+      const hit = evs.includes("通年") || [...f.seasons].some(s=>evs.includes(s));
+      if(!hit) return false;
+    }
+    if(f.budgets.size && !f.budgets.has(ev.budget)) return false;
+    if(terms.length){
+      const hay = [ev.title, ev.summary, (ev.tags||[]).join(" "), ev.detail||"", catOf(ev.category).name].join(" ").toLowerCase();
+      if(!terms.every(t=>hay.includes(t))) return false;
+    }
+    return true;
+  });
+}
+function activeFilterCount(){
+  const f = state.filters;
+  return (f.category?1:0)+(f.people?1:0)+f.seasons.size+f.budgets.size+(f.q.trim()?1:0);
+}
+
+/* =========================================================
+   描画
+========================================================= */
+const app = $("#app");
+let revealObserver = null;
+function setupReveal(){
+  if(revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("on"); revealObserver.unobserve(e.target); } });
+  }, { rootMargin:"0px 0px -8% 0px", threshold:.06 });
+  document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+}
+
+/* ---------- home ---------- */
+function renderHome(){
+  if(!state.data){
+    app.innerHTML = `<div class="empty" style="margin-top:60px"><div class="big">🌿</div>データを読み込めませんでした。<br>ページを再読み込みしてください。</div>`;
+    return;
+  }
+  const f = state.filters;
+  const cats = state.data.categories;
+  const countBy = {};
+  state.data.events.forEach(ev=>{ countBy[ev.category]=(countBy[ev.category]||0)+1; });
+
+  const leaves = Array.from({length:6}, (_,i)=>{
+    const left = 8+i*16+Math.random()*6, dur = 11+Math.random()*7, delay = i*1.7;
+    return `<span class="leaf" style="left:${left}%;top:${Math.random()*30}%;animation-duration:${dur}s;animation-delay:${delay}s">${i%2?"🍃":"🌿"}</span>`;
+  }).join("");
+
+  app.innerHTML = `
+  <div class="view">
+    <section class="hero">
+      ${leaves}
+      <p class="hero-eyebrow">Church Event Catalog</p>
+      <h1>つぎの集まり、<em>なにをしよう?</em></h1>
+      <p class="hero-sub">カテゴリーを選んで、種目を決めるだけ。企画書も、開催の記録も、ぜんぶここに。</p>
+      <div class="searchbar">
+        <span class="sicon">🔍</span>
+        <input id="q" type="search" placeholder="キーワードで探す(例:子ども 夏)" value="${escAttr(f.q)}" autocomplete="off">
+        <button class="sclear" id="q-clear" aria-label="検索をクリア" ${f.q?"":"hidden"}>✕</button>
+      </div>
+    </section>
+
+    <nav class="cats stagger" aria-label="カテゴリー">
+      <button class="cat-tile ${!f.category?"on":""}" data-cat="" style="--i:0">
+        <span class="ci">🌈</span><span class="cn">すべて</span><span class="cc">${state.data.events.length}件</span>
+      </button>
+      ${cats.map((c,i)=>`
+        <button class="cat-tile ${f.category===c.id?"on":""}" data-cat="${escAttr(c.id)}" style="--c:${escAttr(c.color)};--i:${i+1}">
+          <span class="ci">${esc(c.icon)}</span><span class="cn">${esc(c.name)}</span><span class="cc">${countBy[c.id]||0}件</span>
+        </button>`).join("")}
+    </nav>
+
+    <div class="filters">
+      <span class="f-label">人数</span>
+      ${Object.entries(PEOPLE_FILTERS).map(([k,v])=>`<button class="chip ${f.people===k?"on":""}" data-people="${k}">${v}</button>`).join("")}
+      <span class="f-sep"></span><span class="f-label">季節</span>
+      ${SEASONS.filter(s=>s!=="通年").map(s=>`<button class="chip ${f.seasons.has(s)?"on":""}" data-season="${s}">${s}</button>`).join("")}
+      <span class="f-sep"></span><span class="f-label">予算</span>
+      ${Object.entries(BUDGETS).map(([k,v])=>`<button class="chip ${f.budgets.has(k)?"on":""}" data-budget="${k}">${v}</button>`).join("")}
+      ${activeFilterCount()?`<button class="f-clear" id="f-clear">条件をクリア</button>`:""}
+    </div>
+
+    <div class="result-meta" id="result-meta"></div>
+    <section class="grid" id="grid"></section>
+  </div>`;
+
+  $("#q").addEventListener("input", debounce(e=>{ f.q = e.target.value; $("#q-clear").hidden = !f.q; renderGrid(); }, 160));
+  $("#q-clear").addEventListener("click", ()=>{ f.q=""; $("#q").value=""; $("#q-clear").hidden=true; renderGrid(); $("#q").focus(); });
+  app.querySelectorAll("[data-cat]").forEach(b=>b.addEventListener("click", ()=>{
+    f.category = b.dataset.cat || null; renderHome();
+  }));
+  app.querySelectorAll("[data-people]").forEach(b=>b.addEventListener("click", ()=>{
+    f.people = (f.people===b.dataset.people)? null : b.dataset.people; renderHome();
+  }));
+  app.querySelectorAll("[data-season]").forEach(b=>b.addEventListener("click", ()=>{
+    const s=b.dataset.season; f.seasons.has(s)?f.seasons.delete(s):f.seasons.add(s); renderHome();
+  }));
+  app.querySelectorAll("[data-budget]").forEach(b=>b.addEventListener("click", ()=>{
+    const s=b.dataset.budget; f.budgets.has(s)?f.budgets.delete(s):f.budgets.add(s); renderHome();
+  }));
+  const fc = $("#f-clear"); if(fc) fc.addEventListener("click", ()=>{
+    state.filters = { q:"", category:null, people:null, seasons:new Set(), budgets:new Set() }; renderHome();
+  });
+  renderGrid();
+}
+function renderGrid(){
+  const grid = $("#grid"); if(!grid) return;
+  const list = filteredEvents();
+  $("#result-meta").innerHTML = `<b>${list.length}</b> 件のイベント` + (activeFilterCount()?`(絞り込み中)`:"");
+  if(!list.length){
+    grid.innerHTML = `<div class="empty"><div class="big">🌱</div>条件に合うイベントが見つかりませんでした。<br>条件をゆるめてみましょう。</div>`;
+    return;
+  }
+  grid.innerHTML = list.map((ev,i)=>{
+    const c = catOf(ev.category);
+    const ppl = peopleLabel(ev);
+    const last = ev.history[0]?.date;
+    return `
+    <article class="card reveal" data-id="${escAttr(ev.id)}" style="--c:${escAttr(c.color)};transition-delay:${Math.min(i,8)*40}ms" tabindex="0" role="button" aria-label="${escAttr(ev.title)}の詳細">
+      <div class="card-top">
+        <span class="cat-chip">${esc(c.icon)} ${esc(c.name)}</span>
+        <span class="hist-chip ${ev.history.length?"has":""}">${ev.history.length?`📅 ${ev.history.length}回開催`:"未開催"}</span>
+      </div>
+      <h3>${esc(ev.title)}</h3>
+      <p class="sum">${esc(ev.summary||"")}</p>
+      <div class="badges">
+        ${ppl?`<span class="badge">👥 ${esc(ppl)}</span>`:""}
+        ${(ev.seasons||[]).map(s=>`<span class="badge">${esc(s)}</span>`).join("")}
+        ${ev.budget?`<span class="badge">💰 ${esc(BUDGETS[ev.budget]||ev.budget)}</span>`:""}
+        ${last?`<span class="badge">最終 ${esc(last)}</span>`:""}
+      </div>
+      ${(ev.tags||[]).length?`<div class="tagrow">${ev.tags.map(t=>`<span class="tag">#${esc(t)}</span>`).join("")}</div>`:""}
+      ${ev.detail?`<span class="doc-mark">📄 企画書あり</span>`:""}
+    </article>`;
+  }).join("");
+  grid.querySelectorAll(".card").forEach(el=>{
+    const go = ()=>{ location.hash = "#/event/"+el.dataset.id; };
+    el.addEventListener("click", go);
+    el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } });
+  });
+  setupReveal();
+}
+
+/* ---------- detail ---------- */
+function renderDetail(id){
+  const ev = state.data?.events.find(e=>e.id===id);
+  if(!ev){ location.hash=""; return; }
+  const c = catOf(ev.category);
+  const ppl = peopleLabel(ev);
+  const fmt = ev.detailFormat || detectFormat(ev.detail);
+  const promptExample = `「${ev.title}」という教会イベントの企画書を、デザイン込みの単一HTMLファイル(外部ファイル参照なし・インラインCSS)で作成してください。含めてほしい内容:概要、タイムスケジュール表、持ち物リスト、役割分担、予算目安、雨天時/代替案、安全上の注意。明るく親しみやすいデザインでお願いします。`;
+
+  app.innerHTML = `
+  <div class="view">
+    <div class="backrow"><button class="backlink" id="back">← 一覧にもどる</button></div>
+    <header class="d-head" style="--c:${escAttr(c.color)}">
+      <span class="cat-chip" style="--c:${escAttr(c.color)}">${esc(c.icon)} ${esc(c.name)}</span>
+      <h1>${esc(ev.title)}</h1>
+      <p class="sum">${esc(ev.summary||"")}</p>
+      <div class="badges" style="margin-top:12px">
+        ${ppl?`<span class="badge">👥 ${esc(ppl)}</span>`:""}
+        ${(ev.seasons||[]).map(s=>`<span class="badge">🗓 ${esc(s)}</span>`).join("")}
+        ${ev.budget?`<span class="badge">💰 ${esc(BUDGETS[ev.budget]||ev.budget)}</span>`:""}
+        ${(ev.tags||[]).map(t=>`<span class="badge">#${esc(t)}</span>`).join("")}
+      </div>
+    </header>
+
+    <section class="d-section reveal">
+      <h2>📄 企画書</h2>
+      <div id="doc-area"></div>
+    </section>
+
+    <section class="d-section reveal">
+      <h2>🕊 開催履歴とメモ <span style="font-size:.8rem;color:var(--faint);font-weight:500">(${ev.history.length}件)</span></h2>
+      <div class="h-list">
+        ${ev.history.length? ev.history.map(h=>`
+          <div class="h-item">
+            <span class="h-date">${esc(h.date||"-")}</span>
+            <span class="h-memo">${esc(h.memo||"")}</span>
+          </div>`).join("")
+        : `<div class="doc-empty" style="padding:26px"><div class="big">📭</div>まだ開催記録がありません。</div>`}
+      </div>
+    </section>
+  </div>`;
+
+  const docArea = $("#doc-area");
+  if(!ev.detail || !ev.detail.trim()){
+    docArea.innerHTML = `
+      <div class="doc-empty">
+        <div class="big">🌱</div>
+        まだ企画書がありません。Claude Code に下のプロンプトを渡して生成し、<br>events.json の「detail」欄に貼り付けると、ここに表示されます。
+        <div class="prompt-box" id="prompt-box">${esc(promptExample)}</div>
+        <button class="btn btn-ghost" id="copy-prompt">📋 プロンプトをコピー</button>
+      </div>`;
+    $("#copy-prompt").addEventListener("click", async ()=>{
+      try{ await navigator.clipboard.writeText(promptExample); toast("プロンプトをコピーしました"); }
+      catch(e){ toast("コピーできませんでした", "err"); }
+    });
+  } else if(fmt==="html"){
+    docArea.innerHTML = `<div class="doc-frame-wrap"><iframe class="doc-frame" id="doc-frame" sandbox="allow-same-origin allow-scripts" title="企画書"></iframe></div>`;
+    const fr = $("#doc-frame");
+    fr.addEventListener("load", ()=>{
+      const fit = ()=>{ try{ const h = fr.contentDocument.documentElement.scrollHeight; fr.style.height = Math.max(300, h+24)+"px"; }catch(e){ fr.style.height="70vh"; } };
+      fit(); setTimeout(fit, 350); setTimeout(fit, 1200);
+    });
+    fr.srcdoc = ev.detail;
+  } else {
+    docArea.innerHTML = `<div class="md-body">${marked.parse(ev.detail)}</div>`;
+  }
+
+  $("#back").addEventListener("click", ()=>{ location.hash=""; });
+  setupReveal();
+  window.scrollTo({top:0});
+}
+
+/* ---------- router & boot ---------- */
+function route(){
+  const h = location.hash;
+  let m;
+  if((m = h.match(/^#\/event\/(.+)$/))) renderDetail(decodeURIComponent(m[1]));
+  else renderHome();
+}
+function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; }
+
+$("#brand").addEventListener("click", ()=>{ location.hash=""; route(); });
+$("#brand").addEventListener("keydown", e=>{ if(e.key==="Enter"){ location.hash=""; route(); } });
+window.addEventListener("hashchange", route);
+
+async function boot(){
+  app.innerHTML = `<div class="loading"><span class="spin"></span>データを読み込んでいます…</div>`;
+  await loadData();
+  route();
+}
+boot();
+</script>
+</body>
+</html>
