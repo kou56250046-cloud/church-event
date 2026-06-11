@@ -581,26 +581,32 @@ function renderDetail(id){
   </div>`;
 
   const docArea = $("#doc-area");
-  if(!ev.detail || !ev.detail.trim()){
+  const showEmptyState = ()=>{
     docArea.innerHTML = `
       <div class="doc-empty">
         <div class="big">🌱</div>
-        まだ企画書がありません。Claude Code に下のプロンプトを渡して生成し、<br>events.json の「detail」欄に貼り付けると、ここに表示されます。
+        まだ企画書がありません。<code>data/details/${ev.id}.html</code> を作成すると表示されます。<br>下のプロンプトを <strong>/sports-event ${esc(ev.title)}</strong> と合わせてお使いください。
         <div class="prompt-box" id="prompt-box">${esc(promptExample)}</div>
         <button class="btn btn-ghost" id="copy-prompt">📋 プロンプトをコピー</button>
       </div>`;
     $("#copy-prompt").addEventListener("click", async ()=>{
       try{ await navigator.clipboard.writeText(promptExample); toast("プロンプトをコピーしました"); }
-      catch(e){ toast("コピーできませんでした", "err"); }
+      catch(e){ toast("コピーできませんでました", "err"); }
     });
-  } else if(fmt==="html"){
+  };
+  if(fmt==="html"){
     docArea.innerHTML = `<div class="doc-frame-wrap"><iframe class="doc-frame" id="doc-frame" sandbox="allow-same-origin allow-scripts" title="企画書"></iframe></div>`;
     const fr = $("#doc-frame");
     fr.addEventListener("load", ()=>{
       const fit = ()=>{ try{ const h = fr.contentDocument.documentElement.scrollHeight; fr.style.height = Math.max(300, h+24)+"px"; }catch(e){ fr.style.height="70vh"; } };
       fit(); setTimeout(fit, 350); setTimeout(fit, 1200);
     });
-    fr.srcdoc = ev.detail;
+    const htmlSrc = ev.detail && ev.detail.trim()
+      ? Promise.resolve(ev.detail)
+      : fetch(`data/details/${ev.id}.html`).then(r=>{ if(!r.ok) throw new Error(); return r.text(); });
+    htmlSrc.then(html=>{ fr.srcdoc = html; }).catch(showEmptyState);
+  } else if(!ev.detail || !ev.detail.trim()){
+    showEmptyState();
   } else {
     docArea.innerHTML = `<div class="md-body">${marked.parse(ev.detail)}</div>`;
   }
