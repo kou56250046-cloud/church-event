@@ -248,20 +248,6 @@ main{max-width:1100px;margin:0 auto;padding:0 clamp(12px,3.5vw,28px) 80px}
 .empty{grid-column:1/-1;text-align:center;padding:56px 20px;color:var(--muted);background:var(--mint-2);border:1.5px dashed var(--line);border-radius:var(--r)}
 .empty .big{font-size:2rem;margin-bottom:8px}
 
-/* ===== HOVER PREVIEW ===== */
-#hover-preview{
-  position:fixed;z-index:80;pointer-events:none;
-  background:var(--card);border:1.5px solid var(--line);border-radius:14px;
-  box-shadow:var(--shadow-lg);padding:12px 14px;max-width:250px;width:250px;
-  opacity:0;transform:scale(.94) translateY(4px);
-  transition:opacity .16s,transform .16s;
-}
-#hover-preview.show{opacity:1;transform:scale(1) translateY(0)}
-.hp-title{font-size:.92rem;font-weight:900;margin-bottom:5px;color:var(--ink)}
-.hp-sum{font-size:.78rem;color:var(--muted);margin-bottom:7px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.hp-badges{display:flex;flex-wrap:wrap;gap:3px}
-.hp-badge{font-size:.68rem;font-weight:700;color:var(--muted);background:var(--mint-2);border:1px solid var(--line);padding:1px 7px;border-radius:99px}
-@media(hover:none){#hover-preview{display:none}}
 
 /* ===== TABLE VIEW ===== */
 .table-wrap{overflow-x:auto;border-radius:var(--r);border:1.5px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
@@ -425,11 +411,6 @@ main{max-width:1100px;margin:0 auto;padding:0 clamp(12px,3.5vw,28px) 80px}
   <div class="loading"><span class="spin"></span>データを読み込んでいます…</div>
 </main>
 
-<div id="hover-preview" role="tooltip" aria-hidden="true">
-  <div class="hp-title" id="hp-title"></div>
-  <div class="hp-sum" id="hp-sum"></div>
-  <div class="hp-badges" id="hp-badges"></div>
-</div>
 <div id="modal-root"></div>
 <div id="toast-wrap"></div>
 
@@ -775,45 +756,8 @@ function setupCardGrid(container){
   container.querySelectorAll(".star-btn").forEach(btn=>{
     btn.addEventListener("click",e=>toggleStar(btn.dataset.id,e));
   });
-  setupHoverPreview(container);
 }
 
-/* ===== HOVER PREVIEW ===== */
-function setupHoverPreview(container){
-  const preview=$("#hover-preview");
-  if(!preview)return;
-  let hideT=null;
-  container.querySelectorAll(".card").forEach(card=>{
-    card.addEventListener("mouseenter",e=>{
-      if(card.classList.contains("flipped"))return;
-      clearTimeout(hideT);
-      const ev=state.data?.events.find(v=>v.id===card.dataset.id);
-      if(!ev)return;
-      const c=catOf(ev.category);
-      const ppl=peopleLabel(ev);
-      $("#hp-title").textContent=ev.title;
-      $("#hp-sum").textContent=ev.summary||"";
-      $("#hp-badges").innerHTML=[
-        ppl?`<span class="hp-badge">👥 ${esc(ppl)}</span>`:"",
-        (ev.seasons||[]).map(s=>`<span class="hp-badge">${esc(s)}</span>`).join(""),
-        ev.budget?`<span class="hp-badge">💰 ${esc(BUDGETS[ev.budget])}</span>`:"",
-        `<span class="hp-badge">${esc(c.icon)} ${esc(c.name)}</span>`,
-      ].join("");
-      posPreview(e);
-      preview.classList.add("show");
-    });
-    card.addEventListener("mousemove",e=>{if(!card.classList.contains("flipped"))posPreview(e);});
-    card.addEventListener("mouseleave",()=>{hideT=setTimeout(()=>preview.classList.remove("show"),110);});
-  });
-}
-function posPreview(e){
-  const p=$("#hover-preview");
-  const pw=p.offsetWidth||250,ph=p.offsetHeight||130;
-  let x=e.clientX+16,y=e.clientY-10;
-  if(x+pw>window.innerWidth-10)x=e.clientX-pw-16;
-  if(y+ph>window.innerHeight-10)y=window.innerHeight-ph-10;
-  p.style.left=x+"px";p.style.top=y+"px";
-}
 
 /* ===== TABLE VIEW ===== */
 function buildTableHtml(list){
