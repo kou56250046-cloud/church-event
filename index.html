@@ -86,6 +86,10 @@ input,select,textarea{font:inherit;color:var(--ink)}
 .head-nav-btn:hover,.head-nav-btn.on{background:var(--mint);color:var(--leaf-deep)}
 .dark-toggle{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--mint);border:1.5px solid var(--line);transition:all .3s var(--ease);flex-shrink:0}
 .dark-toggle:hover{transform:rotate(20deg) scale(1.1)}
+.gh-btn{position:relative;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--mint);border:1.5px solid var(--line);transition:all .3s var(--ease);flex-shrink:0}
+.gh-btn:hover{transform:rotate(25deg) scale(1.1)}
+.gh-dot{position:absolute;bottom:1px;right:1px;width:9px;height:9px;border-radius:50%;background:var(--faint);border:1.5px solid var(--bg);transition:background .3s}
+.gh-dot.ok{background:#22c55e}
 .btn{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.88rem;padding:8px 15px;border-radius:99px;transition:transform .25s var(--ease),box-shadow .25s,background .25s;white-space:nowrap}
 .btn:active{transform:scale(.96)}
 .btn-pri{background:linear-gradient(135deg,var(--leaf),#5BBE84);color:#fff;box-shadow:0 6px 16px rgba(39,117,75,.26)}
@@ -404,6 +408,7 @@ main{max-width:1100px;margin:0 auto;padding:0 clamp(12px,3.5vw,28px) 80px}
     <button class="head-nav-btn" id="nav-dash">📊 <span>統計</span></button>
     <button class="head-nav-btn" id="nav-matrix">🗂 <span>マトリックス</span></button>
   </nav>
+  <button class="gh-btn" id="gh-btn" aria-label="GitHub設定" title="GitHub設定"><span>⚙️</span><span class="gh-dot" id="gh-dot"></span></button>
   <button class="dark-toggle" id="dark-toggle" aria-label="ダークモード切り替え" title="ダークモード切り替え">🌙</button>
 </header>
 
@@ -482,6 +487,138 @@ function toggleStar(id,e){
     btn.classList.toggle("on",on);
     btn.textContent=on?"★":"☆";
     btn.title=on?"お気に入りから外す":"お気に入りに追加";
+  });
+}
+
+/* ===== GITHUB API ===== */
+const GH_KEY = "church-events-gh";
+function getGH(){ try{return JSON.parse(localStorage.getItem(GH_KEY)||"{}");}catch(e){return {};} }
+function saveGH(s){ localStorage.setItem(GH_KEY,JSON.stringify(s)); }
+function hasToken(){ return !!getGH().token; }
+function ghOwner(){ return getGH().owner||"kou56250046-cloud"; }
+function ghRepo(){ return getGH().repo||"church-event"; }
+function ghBranch(){ return getGH().branch||"main"; }
+
+function jsonToBase64(str){
+  const bytes=new TextEncoder().encode(str);
+  const bin=Array.from(bytes,b=>String.fromCharCode(b)).join("");
+  return btoa(bin);
+}
+
+async function ghGetFile(path){
+  const s=getGH();
+  const url=`https://api.github.com/repos/${ghOwner()}/${ghRepo()}/contents/${path}`;
+  const res=await fetch(url,{headers:{"Authorization":`Bearer ${s.token}`,"Accept":"application/vnd.github+json"}});
+  if(!res.ok) throw new Error(`取得エラー: ${res.status}`);
+  return res.json();
+}
+
+async function saveEventsJson(commitMsg){
+  if(!hasToken()) throw new Error("GitHub PATが設定されていません");
+  const path="data/events.json";
+  const file=await ghGetFile(path);
+  const content=jsonToBase64(JSON.stringify(state.data,null,2));
+  const url=`https://api.github.com/repos/${ghOwner()}/${ghRepo()}/contents/${path}`;
+  const res=await fetch(url,{
+    method:"PUT",
+    headers:{"Authorization":`Bearer ${getGH().token}`,"Accept":"application/vnd.github+json","Content-Type":"application/json"},
+    body:JSON.stringify({message:commitMsg||"データを更新",content,sha:file.sha,branch:ghBranch()}),
+  });
+  if(!res.ok){const e=await res.json();throw new Error(e.message||`保存エラー: ${res.status}`);}
+}
+
+function updateGHDot(){
+  const dot=document.getElementById("gh-dot");
+  if(dot) dot.classList.toggle("ok",hasToken());
+}
+
+function showGHSettings(){
+  const s=getGH();
+  const bg=document.createElement("div");
+  bg.className="modal-bg";
+  bg.innerHTML=`
+    <div class="modal">
+      <h2>⚙️ GitHub接続設定</h2>
+      <p class="desc">Personal Access Token を設定するとサイトから開催記録を直接保存できます。</p>
+      <div class="fg"><label>Personal Access Token <span class="req">*</span></label>
+        <input id="gh-token" type="password" placeholder="github_pat_…" value="${esc(s.token||"")}">
+        <span class="hint">リポジトリの Contents: Read &amp; Write 権限が必要です</span>
+      </div>
+      <div class="fg"><label>Owner</label><input id="gh-owner" value="${esc(s.owner||"kou56250046-cloud")}"></div>
+      <div class="fg"><label>Repository</label><input id="gh-repo" value="${esc(s.repo||"church-event")}"></div>
+      <div class="fg"><label>Branch</label><input id="gh-branch" value="${esc(s.branch||"main")}"></div>
+      ${s.token?`<div class="note" style="background:#F0FFF4;border-color:#86EFAC;color:#166534">✅ PATが設定済みです。保存ボタンで更新できます。</div>`:""}
+      <div class="modal-foot">
+        ${s.token?`<button class="btn btn-danger" id="gh-clear">PATを削除</button>`:""}
+        <button class="btn btn-ghost" id="gh-cancel">キャンセル</button>
+        <button class="btn btn-pri" id="gh-save">保存</button>
+      </div>
+    </div>`;
+  document.getElementById("modal-root").appendChild(bg);
+  const close=()=>bg.remove();
+  bg.querySelector("#gh-cancel").addEventListener("click",close);
+  bg.addEventListener("click",e=>{if(e.target===bg)close();});
+  const cl=bg.querySelector("#gh-clear");
+  if(cl)cl.addEventListener("click",()=>{saveGH({owner:ghOwner(),repo:ghRepo(),branch:ghBranch()});updateGHDot();toast("PATを削除しました");close();});
+  bg.querySelector("#gh-save").addEventListener("click",()=>{
+    const token=bg.querySelector("#gh-token").value.trim();
+    if(!token){toast("PATを入力してください","err");return;}
+    saveGH({token,owner:bg.querySelector("#gh-owner").value.trim()||"kou56250046-cloud",repo:bg.querySelector("#gh-repo").value.trim()||"church-event",branch:bg.querySelector("#gh-branch").value.trim()||"main"});
+    updateGHDot();toast("GitHub設定を保存しました");close();
+  });
+}
+
+function showAddHistory(evId){
+  const ev=state.data?.events.find(e=>e.id===evId);
+  if(!ev)return;
+  const today=new Date().toISOString().slice(0,10);
+  const bg=document.createElement("div");
+  bg.className="modal-bg";
+  bg.innerHTML=`
+    <div class="modal">
+      <h2>📝 開催記録を追加</h2>
+      <p class="desc">${esc(ev.title)}</p>
+      <div class="fg"><label>開催日 <span class="req">*</span></label>
+        <input id="h-date" type="date" value="${today}">
+      </div>
+      <div class="fg"><label>メモ</label>
+        <textarea id="h-memo" style="min-height:90px" placeholder="参加人数、感想、改善点など…"></textarea>
+      </div>
+      ${!hasToken()?`<div class="note">⚠️ GitHub PATが未設定のため、このページを閉じると記録は消えます。<br><button class="btn btn-ghost" style="font-size:.74rem;padding:3px 9px;margin-top:5px" id="go-gh">⚙ GitHub設定を開く</button></div>`:""}
+      <div class="modal-foot">
+        <button class="btn btn-ghost" id="h-cancel">キャンセル</button>
+        <button class="btn btn-pri" id="h-submit">${hasToken()?"💾 GitHubに保存":"📋 メモリに追加"}</button>
+      </div>
+    </div>`;
+  document.getElementById("modal-root").appendChild(bg);
+  const close=()=>bg.remove();
+  bg.querySelector("#h-cancel").addEventListener("click",close);
+  bg.addEventListener("click",e=>{if(e.target===bg)close();});
+  const goGH=bg.querySelector("#go-gh");
+  if(goGH)goGH.addEventListener("click",()=>{close();showGHSettings();});
+  bg.querySelector("#h-submit").addEventListener("click",async()=>{
+    const date=bg.querySelector("#h-date").value;
+    const memo=bg.querySelector("#h-memo").value.trim();
+    if(!date){toast("開催日を入力してください","err");return;}
+    const entry={date,memo};
+    ev.history.unshift(entry);
+    ev.updatedAt=today;
+    const btn=bg.querySelector("#h-submit");
+    btn.textContent="保存中…";btn.disabled=true;
+    if(hasToken()){
+      try{
+        await saveEventsJson(`開催記録を追加: ${ev.title} (${date})`);
+        toast("開催記録をGitHubに保存しました ✓");
+        close();renderDetail(evId);
+      }catch(err){
+        ev.history.shift();
+        toast("保存に失敗しました: "+err.message,"err",5000);
+        btn.textContent="💾 GitHubに保存";btn.disabled=false;
+      }
+    }else{
+      toast("記録を追加しました（GitHub未設定のため端末内のみ）");
+      close();renderDetail(evId);
+    }
   });
 }
 
@@ -1009,14 +1146,18 @@ function renderDetail(id){
   </section>
 
   <section class="d-section reveal">
-    <h2>🕊 開催履歴とメモ <span style="font-size:.78rem;color:var(--faint);font-weight:500">(${ev.history.length}件)</span></h2>
+    <h2 style="display:flex;align-items:center;gap:7px">
+      🕊 開催履歴とメモ <span style="font-size:.78rem;color:var(--faint);font-weight:500">(${ev.history.length}件)</span>
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost" style="font-size:.78rem;padding:5px 12px" id="add-history-btn">📝 記録を追加</button>
+    </h2>
     <div class="h-list">
       ${ev.history.length?ev.history.map(h=>`
         <div class="h-item">
           <span class="h-date">${esc(h.date||"-")}</span>
           <span class="h-memo">${esc(h.memo||"")}</span>
         </div>`).join("")
-      :`<div class="doc-empty" style="padding:24px"><div class="big">📭</div>まだ開催記録がありません。</div>`}
+      :`<div class="doc-empty" style="padding:24px"><div class="big">📭</div>まだ開催記録がありません。<br><br><button class="btn btn-ghost" id="add-history-empty">📝 最初の記録を追加する</button></div>`}
     </div>
   </section>
 </div>`;
@@ -1059,6 +1200,10 @@ function renderDetail(id){
   }
 
   $("#back").addEventListener("click",()=>{location.hash="";});
+  const addBtn=document.getElementById("add-history-btn");
+  if(addBtn)addBtn.addEventListener("click",()=>showAddHistory(id));
+  const addEmpty=document.getElementById("add-history-empty");
+  if(addEmpty)addEmpty.addEventListener("click",()=>showAddHistory(id));
   setupReveal();
   window.scrollTo({top:0});
 }
@@ -1082,11 +1227,13 @@ $("#brand").addEventListener("keydown",e=>{if(e.key==="Enter"){location.hash="";
 $("#nav-home").addEventListener("click",()=>{state.filters={q:"",category:null,people:null,seasons:new Set(),budgets:new Set()};location.hash="";});
 $("#nav-dash").addEventListener("click",()=>{location.hash="#/dashboard";});
 $("#nav-matrix").addEventListener("click",()=>{location.hash="#/matrix";});
+$("#gh-btn").addEventListener("click",showGHSettings);
 $("#dark-toggle").addEventListener("click",toggleDark);
 window.addEventListener("hashchange",route);
 
 async function boot(){
   initDarkMode();
+  updateGHDot();
   loadStars();
   app.innerHTML=`<div class="loading"><span class="spin"></span>データを読み込んでいます…</div>`;
   await loadData();
