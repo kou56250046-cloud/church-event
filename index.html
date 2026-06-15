@@ -317,6 +317,22 @@ main{max-width:1100px;margin:0 auto;padding:0 clamp(14px,4vw,32px) 90px}
   .stagger>*,.reveal{opacity:1!important;transform:none!important}
   html{scroll-behavior:auto}
 }
+/* ---------- card image ---------- */
+.card-img{margin:-18px -18px 12px;border-radius:calc(var(--r) - 1.5px) calc(var(--r) - 1.5px) 0 0;overflow:hidden;height:140px;background:var(--mint)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--ease)}
+.card:hover .card-img img{transform:scale(1.06)}
+/* ---------- ref-link button on card ---------- */
+.ref-link-btn{position:absolute;right:14px;bottom:36px;font-size:.75rem;padding:3px 7px;border-radius:7px;color:var(--leaf-deep);background:var(--mint);border:1px solid var(--line);line-height:1.4;z-index:2;transition:background .2s,transform .2s var(--ease)}
+.ref-link-btn:hover{background:var(--leaf-soft);transform:scale(1.1)}
+/* ---------- detail image ---------- */
+.d-hero-img-wrap{margin-bottom:20px}
+.d-hero-img{width:100%;max-height:280px;object-fit:cover;border-radius:var(--r)}
+/* ---------- detail ref link ---------- */
+.ref-link-wrap{margin-top:4px}
+.ref-link-card{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-sm);padding:12px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .25s var(--ease),transform .25s var(--ease),border-color .25s;max-width:100%;word-break:break-all}
+.ref-link-card:hover{border-color:var(--leaf);box-shadow:var(--shadow);transform:translateY(-2px);color:var(--leaf-deep)}
+.ref-link-text{font-size:.88rem;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-link-arrow{font-size:.9rem;color:var(--faint);flex:0 0 auto}
 </style>
 </head>
 <body>
@@ -526,6 +542,7 @@ function renderGrid(){
     const last = ev.history[0]?.date;
     return `
     <article class="card reveal" data-id="${escAttr(ev.id)}" style="--c:${escAttr(c.color)};transition-delay:${Math.min(i,8)*40}ms" tabindex="0" role="button" aria-label="${escAttr(ev.title)}の詳細">
+      ${ev.imageUrl?`<div class="card-img"><img src="${escAttr(ev.imageUrl)}" alt="${escAttr(ev.title)}" loading="lazy" onerror="this.parentElement.remove()"></div>`:""}
       <div class="card-top">
         <span class="cat-chip">${esc(c.icon)} ${esc(c.name)}</span>
         <span class="hist-chip ${ev.history.length?"has":""}">${ev.history.length?`📅 ${ev.history.length}回開催`:"未開催"}</span>
@@ -540,12 +557,19 @@ function renderGrid(){
       </div>
       ${(ev.tags||[]).length?`<div class="tagrow">${ev.tags.map(t=>`<span class="tag">#${esc(t)}</span>`).join("")}</div>`:""}
       ${ev.detail?`<span class="doc-mark">📄 企画書あり</span>`:""}
+      ${ev.referenceUrl?`<button class="ref-link-btn" data-url="${escAttr(ev.referenceUrl)}" aria-label="${escAttr(ev.title)}の参考サイト" title="参考サイトを開く">🔗</button>`:""}
     </article>`;
   }).join("");
   grid.querySelectorAll(".card").forEach(el=>{
     const go = ()=>{ location.hash = "#/event/"+el.dataset.id; };
     el.addEventListener("click", go);
     el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } });
+  });
+  grid.querySelectorAll(".ref-link-btn").forEach(btn=>{
+    btn.addEventListener("click", e=>{
+      e.stopPropagation();
+      window.open(btn.dataset.url, "_blank", "noopener,noreferrer");
+    });
   });
   setupReveal();
 }
@@ -573,6 +597,20 @@ function renderDetail(id){
         ${(ev.tags||[]).map(t=>`<span class="badge">#${esc(t)}</span>`).join("")}
       </div>
     </header>
+
+    ${ev.imageUrl?`<div class="d-hero-img-wrap reveal"><img class="d-hero-img" src="${escAttr(ev.imageUrl)}" alt="${escAttr(ev.title)}" loading="lazy" onerror="this.parentElement.remove()"></div>`:""}
+
+    ${ev.referenceUrl?`
+    <section class="d-section reveal">
+      <h2>🔗 参考サイト</h2>
+      <div class="ref-link-wrap">
+        <a href="${escAttr(ev.referenceUrl)}" target="_blank" rel="noopener noreferrer" class="ref-link-card">
+          <span>🔗</span>
+          <span class="ref-link-text">${esc(ev.referenceUrl)}</span>
+          <span class="ref-link-arrow">↗</span>
+        </a>
+      </div>
+    </section>`:""}
 
     <section class="d-section reveal">
       <h2>📄 企画書</h2>

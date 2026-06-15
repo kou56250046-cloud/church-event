@@ -18,9 +18,11 @@
       "tags": ["屋外", "初心者向け", "ニュースポーツ", "フィンランド発祥"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/モルック",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/A_game_of_Molkky.jpg",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "kubb",
@@ -34,9 +36,11 @@
       "tags": ["屋外", "チーム戦", "北欧発祥", "戦略性"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/クッブ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Kubb_colourful_designed.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "boccia",
@@ -50,9 +54,11 @@
       "tags": ["屋内可", "バリアフリー", "パラスポーツ", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ボッチャ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Boccia_im_Ebert-Park.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "petanque",
@@ -66,9 +72,11 @@
       "tags": ["屋外", "フランス発祥", "シニア向け", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ペタンク",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Petanque_in_brighton.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "ladder-golf",
@@ -82,9 +90,11 @@
       "tags": ["屋外", "ペア戦", "アメリカ発祥", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Ladder_toss",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "cornhole",
@@ -98,9 +108,11 @@
       "tags": ["屋外", "ペア戦", "アメリカ発祥", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Cornhole",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Cornhole%2C_Homerville.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "kanjam",
@@ -114,9 +126,11 @@
       "tags": ["屋外", "フライングディスク", "チーム戦", "アメリカ発祥"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/KanJam",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "spikeball",
@@ -130,9 +144,11 @@
       "tags": ["屋外", "4人制", "アクティブ", "アメリカ発祥"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Roundnet",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Roundnet_Serve.jpg",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "croquet",
@@ -146,9 +162,11 @@
       "tags": ["屋外", "芝生", "戦略性", "イギリス発祥"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/クロッケー",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern_croquet_equipment.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "disc-golf",
@@ -162,9 +180,11 @@
       "tags": ["屋外", "個人戦", "公園", "フライングディスク"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ディスクゴルフ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Disc_golf_in_basket.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "flying-disc",
@@ -178,9 +198,11 @@
       "tags": ["屋外", "チーム戦", "運動量大", "フライングディスク"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/フライングディスク",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Flying_Disc_-_Ultimate_Frisbee_-_World_Games_2005_(1).jpg",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "kulorite",
@@ -194,9 +216,11 @@
       "tags": ["屋外", "輪投げ系", "日本発祥", "シニア向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://www.ssf.or.jp/knowledge/dictionary/qulority.html",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "skuttle-ball",
@@ -210,9 +234,11 @@
       "tags": ["屋内可", "テーブルゲーム", "戦略性", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "shuffleboard",
@@ -226,9 +252,11 @@
       "tags": ["屋内可", "シニア向け", "戦略性", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/シャフルボード",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Shuffleboard_in_Hohenroda_Germany_2010.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "karoling",
@@ -242,9 +270,11 @@
       "tags": ["屋内可", "カーリング系", "チーム戦", "日本発祥"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/カローリング",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "floor-curling",
@@ -258,9 +288,11 @@
       "tags": ["屋内", "バリアフリー", "チーム戦", "シニア向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://www.shintoku-town.jp/bunka-sports/sports/floor_curling/",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "frescobol",
@@ -274,9 +306,11 @@
       "tags": ["屋外", "ペア", "ブラジル発祥", "協力型"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/フレスコボール",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Frescobol_no_Leblon.JPG",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "polish-horseshoes",
@@ -290,9 +324,11 @@
       "tags": ["屋外", "ペア戦", "投擲系", "フライングディスク"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Polish_horseshoes",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Polish_Horseshoes_Set.jpg",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "new-sports-tag",
@@ -306,9 +342,11 @@
       "tags": ["屋外", "全員参加", "子ども向け", "ファミリー"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/スポーツ鬼ごっこ",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "tag-rugby",
@@ -322,9 +360,11 @@
       "tags": ["屋外", "チーム戦", "コンタクトなし", "運動量大"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/タグラグビー",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tag.Rugby.Play.01.jpg",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "unicurl",
@@ -338,9 +378,11 @@
       "tags": ["屋内", "カーリング系", "バリアフリー", "シニア向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ユニカール",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "ground-golf",
@@ -354,9 +396,11 @@
       "tags": ["屋外", "シニア向け", "日本発祥", "個人戦"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/グラウンド・ゴルフ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/ASICS%27s_wood_clubs_for_Ground_Golf_and_balls_in_Japan.jpg",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "bird-golf",
@@ -370,9 +414,11 @@
       "tags": ["屋外", "羽根使用", "初心者向け", "日本発祥"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ターゲット・バードゴルフ",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "indiaca",
@@ -386,9 +432,11 @@
       "tags": ["屋内可", "バドミントン系", "ブラジル発祥", "チーム戦"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/インディアカ",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "splendor",
@@ -402,9 +450,11 @@
       "tags": ["屋内", "対戦", "戦略", "エンジンビルド", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Splendor_(game)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "catan",
@@ -418,9 +468,11 @@
       "tags": ["屋内", "対戦", "戦略", "交渉", "定番"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/カタンの開拓者たち",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "scout",
@@ -434,9 +486,11 @@
       "tags": ["屋内", "対戦", "カードゲーム", "初心者向け", "短時間"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Scout_(board_game)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "coyote",
@@ -450,9 +504,11 @@
       "tags": ["屋内", "対戦", "推理", "心理戦", "パーティー"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "camel-up",
@@ -466,9 +522,11 @@
       "tags": ["屋内", "賭け", "ダイスゲーム", "パーティー", "盛り上がり"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Camel_Up",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Camel_Up_game_-_Poznan_2017.jpg",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "azul",
@@ -482,9 +540,11 @@
       "tags": ["屋内", "対戦", "タイルゲーム", "戦略", "美しい"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Azul_(board_game)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "carcassonne",
@@ -498,9 +558,11 @@
       "tags": ["屋内", "対戦", "タイルゲーム", "戦略", "定番"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Carcassonne_(board_game)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "blokus",
@@ -514,9 +576,11 @@
       "tags": ["屋内", "対戦", "パズル", "陣地争い", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Blokus",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "nimmt",
@@ -530,9 +594,11 @@
       "tags": ["屋内", "対戦", "カードゲーム", "大人数", "シンプル"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/6_Nimmt!",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "just-one",
@@ -546,9 +612,11 @@
       "tags": ["屋内", "協力", "ワードゲーム", "パーティー", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Just_One_(board_game)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "kingdomino",
@@ -562,9 +630,11 @@
       "tags": ["屋内", "対戦", "タイルゲーム", "戦略", "短時間"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Kingdomino",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "ito",
@@ -578,9 +648,11 @@
       "tags": ["屋内", "協力", "ワードゲーム", "パーティー", "盛り上がり"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "codenames",
@@ -594,9 +666,11 @@
       "tags": ["屋内", "チーム戦", "ワードゲーム", "推理", "定番"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Codenames_(board_game)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "hagetaka",
@@ -610,9 +684,11 @@
       "tags": ["屋内", "対戦", "カードゲーム", "シンプル", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Hol%27s_der_Geier",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "cockroach-poker",
@@ -626,9 +702,11 @@
       "tags": ["屋内", "対戦", "カードゲーム", "心理戦", "爆笑"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Cockroach_Poker",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "rummikub",
@@ -642,9 +720,11 @@
       "tags": ["屋内", "対戦", "タイルゲーム", "頭脳", "定番"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Rummikub",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Rummikub_-_3.JPG",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "machi-koro",
@@ -658,9 +738,11 @@
       "tags": ["屋内", "対戦", "ダイスゲーム", "街づくり", "初心者向け"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Machi_Koro",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "time-bomb",
@@ -674,9 +756,11 @@
       "tags": ["屋内", "チーム戦", "正体隠匿", "緊張感", "パーティー"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "insider",
@@ -690,9 +774,11 @@
       "tags": ["屋内", "チーム戦", "正体隠匿", "推理", "話し合い"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "telestrations",
@@ -706,9 +792,11 @@
       "tags": ["屋内", "協力", "お絵描き", "パーティー", "爆笑"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Telestrations",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "napoleon",
@@ -722,9 +810,11 @@
       "tags": ["屋内", "トリックテイキング", "戦略", "チーム戦", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ナポレオン_(日本のトランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "doubt",
@@ -738,9 +828,11 @@
       "tags": ["屋内", "心理戦", "推理", "パーティー", "初心者向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ダウト",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "indian-poker",
@@ -754,9 +846,11 @@
       "tags": ["屋内", "心理戦", "個人戦", "パーティー", "初心者向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/インディアン・ポーカー",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "hearts",
@@ -770,9 +864,11 @@
       "tags": ["屋内", "トリックテイキング", "戦略", "個人戦", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ハーツ_(トランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "gin-rummy",
@@ -786,9 +882,11 @@
       "tags": ["屋内", "対戦", "戦略", "2人用", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ジン・ラミー",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "spades",
@@ -802,9 +900,11 @@
       "tags": ["屋内", "トリックテイキング", "チーム戦", "戦略", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/スペード_(トランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "contract-bridge",
@@ -818,9 +918,11 @@
       "tags": ["屋内", "トリックテイキング", "チーム戦", "競技向け", "戦略", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/コントラクトブリッジ",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "daifugo",
@@ -834,9 +936,11 @@
       "tags": ["屋内", "対戦", "個人戦", "パーティー", "初心者向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/大富豪",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "page-one",
@@ -850,9 +954,11 @@
       "tags": ["屋内", "対戦", "パーティー", "初心者向け", "子ども向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ページワン",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "fifty-one",
@@ -866,9 +972,11 @@
       "tags": ["屋内", "対戦", "計算", "パーティー", "初心者向け", "子ども向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/51_(トランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "blackjack",
@@ -882,9 +990,11 @@
       "tags": ["屋内", "対戦", "計算", "初心者向け", "ギャンブル要素なし", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ブラックジャック",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "poker",
@@ -898,9 +1008,11 @@
       "tags": ["屋内", "対戦", "心理戦", "戦略", "個人戦", "ギャンブル要素なし", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ポーカー",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "texas-holdem",
@@ -914,9 +1026,11 @@
       "tags": ["屋内", "対戦", "心理戦", "戦略", "個人戦", "ギャンブル要素なし", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/テキサス・ホールデム",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "seven-card-stud",
@@ -930,9 +1044,11 @@
       "tags": ["屋内", "対戦", "心理戦", "戦略", "個人戦", "ギャンブル要素なし", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/セブンカード・スタッド",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "golf-card",
@@ -946,9 +1062,11 @@
       "tags": ["屋内", "対戦", "個人戦", "記憶", "初心者向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ゴルフ_(トランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "casino-card",
@@ -962,9 +1080,11 @@
       "tags": ["屋内", "対戦", "計算", "戦略", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/カシノ",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "oh-hell",
@@ -978,9 +1098,11 @@
       "tags": ["屋内", "トリックテイキング", "戦略", "予測", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://en.wikipedia.org/wiki/Oh_hell",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "euchre",
@@ -994,9 +1116,11 @@
       "tags": ["屋内", "トリックテイキング", "チーム戦", "戦略", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ユーカー",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "pinochle",
@@ -1010,9 +1134,11 @@
       "tags": ["屋内", "トリックテイキング", "戦略", "チーム戦", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ピノクル",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "skull-king",
@@ -1026,9 +1152,11 @@
       "tags": ["屋内", "トリックテイキング", "戦略", "パーティー", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "daihimmin-revolution",
@@ -1042,9 +1170,11 @@
       "tags": ["屋内", "対戦", "パーティー", "戦略", "個人戦", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/大富豪",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "old-maid-memory",
@@ -1058,9 +1188,11 @@
       "tags": ["屋内", "対戦", "記憶", "心理戦", "子ども向け", "初心者向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/ジジ抜き",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "concentration-pro",
@@ -1074,9 +1206,11 @@
       "tags": ["屋内", "対戦", "記憶", "競技向け", "子ども向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/神経衰弱_(トランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "speed-card",
@@ -1090,9 +1224,11 @@
       "tags": ["屋内", "対戦", "スピード", "2人用", "子ども向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/スピード_(トランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     },
     {
       "id": "war-psychological",
@@ -1106,9 +1242,11 @@
       "tags": ["屋内", "対戦", "心理戦", "初心者向け", "子ども向け", "カードゲーム"],
       "detailFormat": "html",
       "detail": "",
+      "referenceUrl": "https://ja.wikipedia.org/wiki/戦争_(トランプゲーム)",
+      "imageUrl": "",
       "history": [],
       "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-15"
     }
   ]
 }
